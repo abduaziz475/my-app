@@ -1,0 +1,892 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --bg-main: #030712;
+  --bg-card: rgba(11, 19, 43, 0.75);
+  --bg-input: rgba(5, 8, 22, 0.9);
+  --border-neon: rgba(0, 242, 254, 0.15);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+
+  /* Neon Ranglar palitrasi */
+  --neon-blue: #00f2fe;
+  --neon-purple: #9d4edd;
+  --neon-green: #00e676;
+  --neon-pink: #ff007f;
+
+  /* Silliq animatsiyalar */
+  --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.light-theme {
+  --bg-main: #f1f5f9;
+  --bg-card: rgba(255, 255, 255, 0.95);
+  --bg-input: #ffffff;
+  --border-neon: rgba(15, 23, 42, 0.1);
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --neon-blue: #0284c7;
+  --neon-purple: #6d28d9;
+  --neon-green: #16a34a;
+  --neon-pink: #db2777;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: var(--transition);
+}
+
+/* ==========================================
+   SPLASH SCREEN SCREEN (Aynan siz bergan formula)
+   ========================================== */
+.splash-container {
+  position: fixed;
+  inset: 0;
+  background: #010206;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: splashFade 3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes splashFade {
+  0% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+  }
+  85% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(30px);
+    transform: scale(1.05);
+    visibility: hidden;
+  }
+}
+
+.splash-text {
+  font-family: "Orbitron", sans-serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-shadow: 0 0 20px var(--neon-blue), 0 0 50px var(--neon-purple);
+  text-align: center;
+}
+
+/* ==========================================
+   AUTH CARD
+   ========================================== */
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  background: radial-gradient(
+    circle at center,
+    rgba(157, 77, 221, 0.08) 0%,
+    transparent 70%
+  );
+}
+
+.auth-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-neon);
+  padding: 45px 35px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 500px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.auth-card h2 {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+  text-align: center;
+  color: var(--neon-blue);
+  text-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+}
+
+/* ==========================================
+   FORMS & INPUTS INTERFEYSI (No-Yopishish)
+   ========================================== */
+.input-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 25px; /* Elementlar yopishib qolmasligi uchun optimal oraliq */
+}
+
+.input-field-group label {
+  font-size: 0.8rem;
+  font-family: "Orbitron", sans-serif;
+  color: var(--neon-blue);
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.cyber-input,
+.cyber-select {
+  width: 100%;
+  padding: 16px 20px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-neon);
+  border-radius: 12px;
+  color: var(--text-main);
+  outline: none;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.cyber-input:focus,
+.cyber-select:focus {
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.25);
+}
+
+.cyber-select option {
+  background: #0b132b;
+  color: #fff;
+}
+
+.cyber-btn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 1px;
+  transition: var(--transition);
+  box-shadow: 0 4px 15px rgba(0, 242, 254, 0.2);
+}
+
+.cyber-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 242, 254, 0.4);
+}
+
+/* ==========================================
+   LAYOUNT ARXITEKTURASI
+   ========================================== */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar-nav {
+  width: 290px;
+  background: rgba(6, 10, 23, 0.98);
+  border-right: 1px solid var(--border-neon);
+  padding: 35px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  height: 100vh;
+  z-index: 100;
+}
+
+.logo-section {
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 0 10px var(--neon-blue);
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.nav-button {
+  width: 100%;
+  padding: 15px 18px;
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  color: var(--text-muted);
+  text-align: left;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-button:hover,
+.nav-button.active {
+  background: rgba(0, 242, 254, 0.08);
+  color: var(--neon-blue);
+  padding-left: 24px;
+  box-shadow: inset 4px 0 0 var(--neon-blue);
+}
+
+.mode-toggle {
+  background: var(--bg-card);
+  border: 1px solid var(--border-neon);
+  padding: 12px 20px;
+  border-radius: 10px;
+  color: var(--text-main);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.mode-toggle:hover {
+  border-color: var(--neon-purple);
+}
+
+.content-frame {
+  margin-left: 290px;
+  flex-grow: 1;
+  padding: 45px;
+  min-height: 100vh;
+}
+
+/* ==========================================
+   DASHBOARD VA KARTALAR SYSTEM
+   ========================================== */
+.home-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.interactive-neon-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-neon);
+  padding: 35px;
+  border-radius: 18px;
+  cursor: pointer;
+  transition: var(--transition);
+  backdrop-filter: blur(15px);
+}
+
+.interactive-neon-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--neon-blue);
+  box-shadow: 0 15px 35px rgba(0, 242, 254, 0.15);
+}
+
+/* ==========================================
+   MATRIX STUDENT CARDS
+   ========================================== */
+.matrix-list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+.student-matrix-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-neon);
+  padding: 25px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.student-matrix-card:hover {
+  border-color: var(--neon-purple);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(157, 77, 221, 0.2);
+}
+
+/* ==========================================
+   30 TALIK MAJBURIY QUIZ STACK
+   ========================================== */
+.quiz-container-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border-neon);
+  padding: 40px;
+  border-radius: 20px;
+}
+
+.quiz-option-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 18px 22px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-neon);
+  border-radius: 12px;
+  margin-bottom: 14px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.quiz-option-row:hover {
+  background: rgba(0, 242, 254, 0.04);
+  border-color: var(--neon-blue);
+}
+
+.quiz-option-row.selected {
+  background: rgba(157, 77, 221, 0.1);
+  border-color: var(--neon-purple);
+  box-shadow: inset 0 0 10px rgba(157, 77, 221, 0.2);
+}
+
+/* ==========================================
+   MODAL DIALOG (Batafsil ko'rish oynasi)
+   ========================================== */
+.custom-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 4, 10, 0.85);
+  backdrop-filter: blur(12px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  padding: 24px;
+}
+
+.modal-content-box {
+  background: #060b18;
+  border: 2px solid var(--neon-blue);
+  padding: 40px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 580px;
+  color: #fff;
+  position: relative;
+  box-shadow: 0 0 40px rgba(0, 242, 254, 0.2);
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.close-modal-btn:hover {
+  color: var(--neon-pink);
+}
+
+/* ==========================================
+   RESPONSIVE DESIGN (MEDIA QUERIES)
+   ========================================== */
+@media (max-width: 1024px) {
+  .sidebar-nav {
+    width: 85px;
+    padding: 30px 15px;
+  }
+  .sidebar-nav span,
+  .logo-section {
+    display: none;
+  }
+  .content-frame {
+    margin-left: 85px;
+    padding: 30px;
+  }
+  .nav-button {
+    justify-content: center;
+    padding: 16px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-frame {
+    padding: 20px;
+  }
+  .splash-text {
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+  }
+  .interactive-neon-card {
+    padding: 25px;
+  }
+}
+/* ==========================================
+   SCROLLBAR NEON STYLE
+   ========================================== */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050816;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--neon-blue), var(--neon-purple));
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(var(--neon-purple), var(--neon-pink));
+}
+
+/* ==========================================
+     CARD GLOW ANIMATION
+     ========================================== */
+
+@keyframes neonPulse {
+  0% {
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.15);
+  }
+
+  50% {
+    box-shadow: 0 0 25px rgba(0, 242, 254, 0.35),
+      0 0 50px rgba(157, 77, 221, 0.25);
+  }
+
+  100% {
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.15);
+  }
+}
+
+.interactive-neon-card:hover {
+  animation: neonPulse 2s infinite;
+}
+
+/* ==========================================
+     GLASS EFFECT
+     ========================================== */
+
+.student-matrix-card,
+.quiz-container-box,
+.auth-card,
+.modal-content-box {
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+/* ==========================================
+     BUTTON CLICK EFFECT
+     ========================================== */
+
+.cyber-btn:active {
+  transform: scale(0.96);
+}
+
+/* ==========================================
+     IMAGE HOVER ZOOM
+     ========================================== */
+
+.student-matrix-card img {
+  transition: 0.4s ease;
+}
+
+.student-matrix-card:hover img {
+  transform: scale(1.08) rotate(2deg);
+}
+
+/* ==========================================
+     TEXT GLOW EFFECT
+     ========================================== */
+
+h1,
+h2,
+h3 {
+  text-shadow: 0 0 12px rgba(0, 242, 254, 0.15);
+}
+
+/* ==========================================
+     FLOATING ANIMATION
+     ========================================== */
+
+@keyframes floatingCard {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.home-cards-grid .interactive-neon-card {
+  animation: floatingCard 5s ease-in-out infinite;
+}
+
+.matrix-bg {
+  position: fixed;
+  inset: 0;
+  background-image: linear-gradient(
+      rgba(0, 255, 170, 0.08) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(0, 255, 170, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: -1;
+  animation: matrixMove 8s linear infinite;
+}
+
+@keyframes matrixMove {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(40px);
+  }
+}
+/* ==========================================
+   CLEAN WHITE LIGHT THEME
+   ========================================== */
+
+.light-theme {
+  --bg-main: #eef2f7;
+
+  --bg-card: #f8fafc;
+
+  --bg-input: #ffffff;
+
+  --border-neon: #dbe4ee;
+
+  --text-main: #0f172a;
+
+  --text-muted: #475569;
+
+  --neon-blue: #2563eb;
+
+  --neon-purple: #2563eb;
+
+  --neon-green: #2563eb;
+
+  --neon-pink: #2563eb;
+}
+
+/* BODY */
+
+.light-theme body {
+  background: #eef2f7;
+  color: var(--text-main);
+}
+
+/* SIDEBAR */
+
+.light-theme .sidebar-nav {
+  background: #f8fafc;
+  border-right: 1px solid #dbe4ee;
+}
+
+/* CONTENT */
+
+.light-theme .content-frame {
+  background: #eef2f7;
+}
+
+/* ALL CARDS */
+
+.light-theme .interactive-neon-card,
+.light-theme .student-matrix-card,
+.light-theme .quiz-container-box,
+.light-theme .auth-card,
+.light-theme .modal-content-box {
+  background: #f8fafc;
+
+  border: 1px solid #dbe4ee;
+
+  box-shadow:
+    0 4px 15px rgba(15, 23, 42, 0.04);
+
+  color: #0f172a;
+}
+
+/* INPUT */
+
+.light-theme .cyber-input,
+.light-theme .cyber-select {
+  background: #ffffff;
+
+  border: 1px solid #dbe4ee;
+
+  color: #0f172a;
+}
+
+/* SELECT OPTION */
+
+.light-theme .cyber-select option {
+  background: #ffffff;
+  color: #0f172a;
+}
+
+/* BUTTON */
+
+.light-theme .cyber-btn {
+  background: #2563eb;
+
+  box-shadow: none;
+}
+
+/* NAV */
+
+.light-theme .nav-button {
+  color: #334155;
+}
+
+.light-theme .nav-button:hover,
+.light-theme .nav-button.active {
+  background: #eff6ff;
+
+  color: #2563eb;
+
+  box-shadow: inset 4px 0 0 #2563eb;
+}
+
+/* QUIZ */
+
+.light-theme .quiz-option-row {
+  background: #ffffff;
+
+  border: 1px solid #dbe4ee;
+}
+
+.light-theme .quiz-option-row:hover {
+  background: #eff6ff;
+}
+
+.light-theme .quiz-option-row.selected {
+  background: #dbeafe;
+
+  border-color: #2563eb;
+}
+
+/* LOGO */
+
+.light-theme .logo-section {
+  color: #0f172a;
+
+  text-shadow: none;
+}
+
+/* SPLASH */
+
+.light-theme .splash-text {
+  color: #0f172a;
+
+  text-shadow: none;
+}
+
+/* MODAL */
+
+.light-theme .modal-content-box {
+  background: #f8fafc;
+
+  color: #0f172a;
+}
+
+/* MATRIX BACKGROUND */
+
+.light-theme .matrix-bg {
+  opacity: 0.03;
+}
+
+/* TEXT GLOW REMOVE */
+
+.light-theme h1,
+.light-theme h2,
+.light-theme h3 {
+  text-shadow: none;
+}/* ==========================================
+   MOBILE RESPONSIVE UPGRADE
+   ========================================== */
+
+@media (max-width: 768px) {
+
+  .app-layout {
+    flex-direction: column;
+  }
+
+  /* SIDEBAR */
+
+  .sidebar-nav {
+    width: 100%;
+    height: auto;
+    position: relative;
+
+    padding: 20px;
+
+    flex-direction: column;
+
+    gap: 20px;
+  }
+
+  .logo-section {
+    display: block !important;
+
+    font-size: 1.1rem;
+
+    margin-bottom: 10px;
+  }
+
+  .nav-links {
+    flex-direction: row;
+
+    overflow-x: auto;
+
+    gap: 10px;
+
+    padding-bottom: 10px;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-button {
+    min-width: 140px;
+
+    justify-content: center;
+
+    padding: 14px;
+  }
+
+  /* CONTENT */
+
+  .content-frame {
+    margin-left: 0;
+
+    padding: 20px;
+  }
+
+  /* CARDS */
+
+  .home-cards-grid,
+  .matrix-list-grid {
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+  }
+
+  .interactive-neon-card,
+  .student-matrix-card,
+  .quiz-container-box {
+    padding: 22px;
+  }
+
+  /* TEXT */
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+
+  /* SPLASH */
+
+  .splash-text {
+    font-size: 1.8rem;
+
+    letter-spacing: 2px;
+
+    padding: 0 10px;
+  }
+
+  /* AUTH */
+
+  .auth-card {
+    padding: 30px 22px;
+  }
+
+  /* QUIZ */
+
+  .quiz-option-row {
+    padding: 15px;
+  }
+
+  /* MODAL */
+
+  .modal-content-box {
+    padding: 25px 20px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+  }
+
+  /* BUTTON */
+
+  .cyber-btn {
+    padding: 14px;
+  }
+}
+
+/* ==========================================
+   EXTRA SMALL DEVICES
+   ========================================== */
+
+@media (max-width: 480px) {
+
+  .content-frame {
+    padding: 15px;
+  }
+
+  .interactive-neon-card,
+  .student-matrix-card,
+  .quiz-container-box,
+  .auth-card {
+    border-radius: 14px;
+  }
+
+  .nav-button {
+    min-width: 120px;
+
+    font-size: 0.85rem;
+  }
+
+  .splash-text {
+    font-size: 1.4rem;
+  }
+
+  .cyber-input,
+  .cyber-select {
+    padding: 14px;
+  }
+}
